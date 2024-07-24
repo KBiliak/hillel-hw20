@@ -17,7 +17,6 @@ class My_animal:
 def create_animals(
         animal_data: list = []
 ):
-
     animals = []
     for animal_tuple in animal_data:
         name = animal_tuple[0]
