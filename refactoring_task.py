@@ -5,39 +5,25 @@ animal_data = [
 ]
 
 
-class My_animal:
-    def __init__(
-            self, name, color, birth_date):
+class MyAnimal:
+    def __init__(self, name, color, birth_date):
         self.name = name
         self.color = color
-        # self.species = species
         self.birth_date = birth_date
 
 
-def create_animals(
-        animal_data: list = []
-):
-
-    animals = []
-    for animal_tuple in animal_data:
-        name = animal_tuple[0]
-        color = animal_tuple[1]
-        birth_date = animal_tuple[2]
-        from datetime import datetime
-        birth_date= datetime.strptime(birth_date, '%d-%m-%Y').date()
-        animal = My_animal(name=name, color=color, birth_date=birth_date)
-        animals.append(animal)
-    return animals
+def create_animals(raw_animals: list[tuple]) -> list[MyAnimal]:
+    result = []
+    for name, color, birth_date in raw_animals:
+        result.append(MyAnimal(name, color, birth_date))
+    return result
 
 
-def print_table_data(table_data):
-    for i in table_data:
-        print("Name: " + i.name + " Color: " + i.color + " Birth : " + str(i.birth_date))
+def print_animal_data(animals_list: list[MyAnimal]):
+    for i in animals_list:
+        print(f"Name: {i.name}, Color: {i.color} Birth :  {str(i.birth_date)}")
 
 
 if __name__ == "__main__":
-    animals=create_animals(animal_data)
-    print_table_data(animals)
-
-
-
+    animals = create_animals(animal_data)
+    print_animal_data(animals)
